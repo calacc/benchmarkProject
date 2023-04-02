@@ -1,3 +1,5 @@
+//hehe
+
 package bench.cpu;
 
 import bench.IBenchmark;
