@@ -5,7 +5,7 @@ import bench.IBenchmark;
 public class CPURecursionLoopUnrolling implements IBenchmark {
 
     long size;
-    long startS, sizeS, counterS;
+    long startS=-1, sizeS, counterS;
     @Override
     public void run() {
 
@@ -33,7 +33,6 @@ public class CPURecursionLoopUnrolling implements IBenchmark {
         }catch(StackOverflowError | NoClassDefFoundError e)
         {
             startS=start; sizeS=size; counterS=counter;
-//            System.out.println("Reached nr " + start + "/" + size + "after" + counter + "calls");
         }
         return 0;
     }
@@ -55,14 +54,15 @@ public class CPURecursionLoopUnrolling implements IBenchmark {
         }catch(StackOverflowError | NoClassDefFoundError e)
         {
             startS=start; sizeS=size; counterS=counter;
-//            System.out.println("Reached nr " + start + "/" + size + "after" + counter + "calls");
         }
         return 0;
     }
 
     public String getParameters()
     {
-        return "Reached nr " + startS + "/" + sizeS + "after" + counterS + "calls";
+        if(startS!=-1)
+            return "Reached nr " + startS + "/" + sizeS + " after " + counterS + " calls.";
+        return "";
     }
     @Override
     public void run(Object... params) {

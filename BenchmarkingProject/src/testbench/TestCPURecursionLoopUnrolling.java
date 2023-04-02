@@ -13,15 +13,15 @@ public class TestCPURecursionLoopUnrolling {
         IBenchmark bench = new CPURecursionLoopUnrolling();
         ILog log = new ConsoleLogger();
         ITimer timer = new Timer();
-        long workload=100000L;
+        long workload=1000000L;
 
         bench.initialize(workload);
         bench.warmUp();
 
         timer.start();
 //        bench.run(false);
-//        bench.run(true, 1);
-        bench.run(true, 3);
+        bench.run(true, 1);
+//        bench.run(true, 3);
 
         long time=timer.stop();
         log.write("Finished in ", time, TimeUnit.units.ms);
