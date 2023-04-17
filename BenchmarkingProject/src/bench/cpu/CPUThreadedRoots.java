@@ -81,13 +81,10 @@ public class CPUThreadedRoots implements IBenchmark {
 
         @Override
         public void run() {
-            for (int i = from; i < to; i++) {
-                if(running)
-                {
-                    
-                }
+            for (int i = from; i < to && running; i++) {
                 result+=getNewtonian((double)i);
             }
+            getResult();
             // compute Newtonian square root on each number from i = 'from' to 'to', and also check 'running'
             // save (+=) each computed square root in the local 'result' variable
             // extra: send 'result' back to main thread and sum up with all results

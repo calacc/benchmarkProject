@@ -13,8 +13,8 @@ public class TestThreadedRoots{
         ITimer timer = new Timer();
         ILog log = new ConsoleLogger();
         IBenchmark bench = new CPUThreadedRoots();
-
-        bench.initialize(200000000);
+        int workload=200000000;
+        bench.initialize(workload);
         bench.warmUp();
 
         for(int i=1; i<=64; i*=2)
@@ -23,6 +23,7 @@ public class TestThreadedRoots{
             bench.run(i);
             log.write(i, "threads");
             log.writeTime("Finished in: ", timer.stop(), TimeUnit.units.seconds);
+            log.write("Score: ", (int)((double)workload/(timer.stop()*i)*100000));
         }
     }
 }
