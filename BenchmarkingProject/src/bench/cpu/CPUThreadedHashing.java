@@ -178,8 +178,14 @@ public class CPUThreadedHashing implements IBenchmark {
             if(carry==1)
                 return null;
 
-            for(i=0; i<text.length(); ++i)
-                result+=(index[i]+'a');
+            StringBuilder sb = new StringBuilder();
+            for(int j = 0; j < index.length; j++) {
+                sb.append(charSet.charAt(index[j]));
+            }
+            result = sb.toString();
+
+//            for(i=0; i<text.length(); ++i)
+//                result+=(char)(index[i]+'a');
             // convert string to table of indices
             // abz = [0,1,25]
 
@@ -190,22 +196,22 @@ public class CPUThreadedHashing implements IBenchmark {
 
             // convert back to string
             // [0,2,0] = aca
-             System.out.println(result);
+            System.out.println(result);
             return result;
         }
 
         // can be used as an alternative to getNextString, but it will be infinitely slower to break longer hashes
-        public String getRandomString(int length) {
-            String text = "";
-
-            for (int i = 0; i < length; i++) {
-                Random rand = new Random();
-                char c = charSet.charAt(rand.nextInt(charSet.length()));
-                text += c;
-            }
-
-            return text;
-        }
+//        public String getRandomString(int length) {
+//            String text = "";
+//
+//            for (int i = 0; i < length; i++) {
+//                Random rand = new Random();
+//                char c = charSet.charAt(rand.nextInt(charSet.length()));
+//                text += c;
+//            }
+//
+//            return text;
+//        }
     }
 
 }

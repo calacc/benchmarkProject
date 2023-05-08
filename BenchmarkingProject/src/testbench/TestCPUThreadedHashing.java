@@ -15,11 +15,11 @@ public class TestCPUThreadedHashing {
         ILog log = new ConsoleLogger();
         int maxLength = 10;
         int nThreads = 8;
-        int hashCode = 524381996;
+        int hashCode = 317266982;
         timer.start();
         bench.run(maxLength, nThreads, hashCode);
         long time = timer.stop();
-        log.writeTime("Finished in", time, TimeUnit.units.ms);
+        log.writeTime("Finished in ", time, TimeUnit.units.s);
         log.write("Result is", ((CPUThreadedHashing) bench).getResult());
     }
 
