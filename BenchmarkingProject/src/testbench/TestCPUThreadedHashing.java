@@ -15,7 +15,7 @@ public class TestCPUThreadedHashing {
         ILog log = new ConsoleLogger();
         int maxLength = 10;
         int nThreads = 8;
-        int hashCode = 317266982;
+        int hashCode = 464124123;
         timer.start();
         bench.run(maxLength, nThreads, hashCode);
         long time = timer.stop();
