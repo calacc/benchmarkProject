@@ -32,8 +32,8 @@ public class HDDWriteSpeed implements IBenchmark {
 		String suffix = ".dat";
 		int minIndex = 0;
 		int maxIndex = 8;
-		long fileSize = 256*1024*1024;  // 256MB
-		int bufferSize = 4*1024; // 4 KB
+		long fileSize = 512*1024*1024;  // 512MB
+		int bufferSize = 2*1024; // 2KB
 		
 		try {
 			if (option.equals("fs"))
