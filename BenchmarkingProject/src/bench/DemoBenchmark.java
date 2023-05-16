@@ -50,4 +50,9 @@ public class DemoBenchmark implements IBenchmark{
     public void warmUp() {
 
     }
+
+    @Override
+    public String getResult() {
+        return null;
+    }
 }

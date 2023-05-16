@@ -68,6 +68,11 @@ public class CPUDigitsOfPi implements IBenchmark{
 
     }
 
+    @Override
+    public String getResult() {
+        return null;
+    }
+
     public void warmup() {
         // TODO Auto-generated method stub
         for(int i = 0; i < 100; i++) {

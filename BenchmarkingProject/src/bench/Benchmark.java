@@ -25,4 +25,9 @@ public class Benchmark implements IBenchmark{
     public void warmUp() {
 
     }
+
+    @Override
+    public String getResult() {
+        return null;
+    }
 }

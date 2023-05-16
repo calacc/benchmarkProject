@@ -110,4 +110,9 @@ public class CPUFixedPoint implements IBenchmark {
         }
 
     }
+
+    @Override
+    public String getResult() {
+        return null;
+    }
 }

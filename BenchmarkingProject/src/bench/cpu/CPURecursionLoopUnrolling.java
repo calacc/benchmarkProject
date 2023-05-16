@@ -96,4 +96,9 @@ public class CPURecursionLoopUnrolling implements IBenchmark {
     public void warmUp() {
 
     }
+
+    @Override
+    public String getResult() {
+        return null;
+    }
 }
