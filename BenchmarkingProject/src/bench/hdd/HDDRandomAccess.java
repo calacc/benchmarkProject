@@ -11,7 +11,8 @@ import bench.IBenchmark;
 
 public class HDDRandomAccess implements IBenchmark {
 
-    private final static String PATH = "D:\\year 2\\sem2\\co\\PROJECT here\\Files\\file.txt";
+    private final static String PATH = "D:\\uni\\year2\\sem2\\CO\\files\\file.txt";
+//    private final static String PATH = "D:\\year 2\\sem2\\co\\PROJECT here\\Files\\file.txt";
     private String result;
 
     @Override
@@ -97,11 +98,20 @@ public class HDDRandomAccess implements IBenchmark {
                 int bufferSize = Integer.parseInt(String.valueOf(param[2]));
                 if (String.valueOf(param[1]).toLowerCase().equals("fs"))
                 {
-
+                    long timeMs = new RandomAccess().randomWriteFixedSize(PATH,
+                            bufferSize, steps);
+                    result = steps + " random writes in " + timeMs + " ms ["
+                            + (steps * bufferSize / 1024 / 1024) + " MB, "
+                            + 1.0 * (steps * bufferSize / 1024 / 1024) / timeMs * 1000 + "MB/s]";
                 }
                 else if(String.valueOf(param[1]).toLowerCase().equals("ft"))
                 {
-
+                    //for 5 secs there will be random jumps and read and we return how many were done
+                    int ios = new RandomAccess().randomWriteFixedTime(PATH,
+                            bufferSize, runtime);
+                    result = ios + " I/Os per second ["
+                            + (ios * bufferSize / 1024 / 1024) + " MB, "
+                            + 1.0 * (ios * bufferSize / 1024 / 1024) / runtime * 1000 + "MB/s]";
                 }
                 else
                     throw new UnsupportedOperationException("Write option \""
@@ -171,12 +181,6 @@ public class HDDRandomAccess implements IBenchmark {
                 file.seek(position);
                 file.read(bytes);
 
-                // go to random spot in file
-                // position between 0 and file size-buffer size - 1, atentie sa nu fie negativ
-                // seek to that location and then do the read
-                // atentie la conversie intre int si long
-                // read the bytes into buffer
-                // generate random double and multiply with max size
             }
 
             file.close();
@@ -262,6 +266,32 @@ public class HDDRandomAccess implements IBenchmark {
 
             file.close();
             return counter;
+        }
+
+        public long randomWriteFixedSize(String filePath, int bufferSize,
+                                        int toRead) throws IOException {
+            // file to read from
+            RandomAccessFile file = new RandomAccessFile(filePath, "rw");
+            // size of file
+            long fileSize = file.getChannel().size();
+            // counter for number of reads
+            int counter = 0;
+            // buffer for reading
+            byte[] bytes = new byte[bufferSize];
+            // timer
+            Timer timer = new Timer();
+            long maxSize = fileSize-bufferSize-1;
+
+            timer.start();
+            while (counter++ < toRead) {
+                long position = (long) (maxSize*Math.abs(random.nextDouble()));
+                file.seek(position);
+                file.write(bytes);
+
+            }
+
+            file.close();
+            return timer.stop() / 1000000; // ns to ms!
         }
 
         public byte[] FromFile(String filePath, int position, int size)
