@@ -228,18 +228,7 @@ public class HDDRandomAccess implements IBenchmark {
             return counter;
         }
 
-        /**
-         * Read data from a file at a specific position
-         *
-         * @param filePath
-         *            Path to file
-         * @param position
-         *            Position in file
-         * @param size
-         *            Number of bytes to reads from the given position
-         * @return Data that was read
-         * @throws IOException
-         */
+
 
         public int randomWriteFixedTime(String filePath, int bufferSize,
                                        int millis) throws IOException {
