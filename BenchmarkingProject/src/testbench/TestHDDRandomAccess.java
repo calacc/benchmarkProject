@@ -9,7 +9,7 @@ public class TestHDDRandomAccess {
     public static void main(String[] args) {
         ILog log = new ConsoleLogger();
         IBenchmark bench = new HDDRandomAccess();
-        long fileSize = 1*1024*1024*1024L; //2gb
+        long fileSize = 33*1024*1024*1024L; //2gb
         long bufferSize = 512; //4kb
 
         bench.initialize(fileSize);

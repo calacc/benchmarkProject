@@ -1,0 +1,6 @@
+0.6605milliseconds
+0.5144milliseconds
+4.397milliseconds
+119.7123milliseconds
+1381.0579milliseconds
+4095.1614999999997milliseconds
